@@ -382,7 +382,6 @@ DHT11
 
 - A work around was needed to stop Wokwi simulator from lagging and dumping messages on Serial on button press
 - Neopixel on Wokwi simulator does not work as intended but mirror acknowledgement can be confirmed from Serial and ```CMD:STATUS```
-- DHT11 on XPLORER board was faulty, dummy data was emulated for functional testing. 
 
 ---
 
