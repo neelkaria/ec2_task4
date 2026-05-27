@@ -36,7 +36,7 @@
 
 #define PIN_NEOPIXEL    1      // WS2812 NeoPixel data line (GP1)
 #define PIN_SERVO       7      // Servo signal line (GP7)
-#define PIN_DHT11       22     // DHT11 sensor line (GP22)
+#define PIN_DHT11       0     // DHT11 sensor line (GP22)
 
 #define PIN_BTN_TOP     10     // Button: Top (GP10)
 #define PIN_BTN_RIGHT   11     // Button: Right (GP11)
@@ -315,8 +315,8 @@ void readDHTSensor() {
       lastDHTReadTime = now;
 
       // faulty sensor
-      float h = 44.6; //dht.readHumidity();
-      float t = 26.5; //dht.readTemperature();
+      float h = dht.readHumidity();
+      float t = dht.readTemperature();
 
       // Validate BOTH readings before publishing
       if (isnan(h) || isnan(t)) {
