@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "author": "IEM HS Ravensburg-Weingarten",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-pi-pico-w", "id": "pico", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-neopixel",
+      "id": "neo1",
+      "top": -101.9,
+      "left": 200.8,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-neopixel",
+      "id": "neo2",
+      "top": -101.9,
+      "left": 248.8,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-neopixel",
+      "id": "neo3",
+      "top": -99.5,
+      "left": 296.6,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-neopixel",
+      "id": "neo4",
+      "top": -99.5,
+      "left": 354.2,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_led1",
+      "top": 100,
+      "left": -100,
+      "attrs": { "color": "red", "label": "LED 1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_led2",
+      "top": 100,
+      "left": 0,
+      "attrs": { "color": "green", "label": "LED 2" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_led3",
+      "top": 100,
+      "left": 100,
+      "attrs": { "color": "blue", "label": "LED 3" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_led4",
+      "top": 100,
+      "left": 200,
+      "attrs": { "color": "yellow", "label": "LED 4" }
+    },
+    { "type": "wokwi-potentiometer", "id": "pot", "top": -200, "left": -100, "attrs": {} },
+    {
+      "type": "wokwi-ssd1306",
+      "id": "oled",
+      "top": -252.5,
+      "left": 251.5,
+      "attrs": { "i2cAddress": "0x3c" }
+    }
+  ],
+  "connections": [
+    [ "pico:GP28", "neo1:DIN", "green", [ "h20", "v-20" ] ],
+    [ "neo1:DOUT", "neo2:DIN", "green", [ "h19.2", "v10.5" ] ],
+    [ "neo2:DOUT", "neo3:DIN", "green", [ "h19.2", "v12.9" ] ],
+    [ "neo3:DOUT", "neo4:DIN", "green", [ "v-1.5", "h19.4", "v12" ] ],
+
+    [ "neo1:VCC", "pico:3V3", "red", [ "h-20", "v20" ] ],
+    [ "neo2:VCC", "pico:3V3", "red", [ "h-20", "v20" ] ],
+    [ "neo3:VCC", "pico:3V3", "red", [ "h-20", "v20" ] ],
+    [ "neo4:VCC", "pico:3V3", "red", [ "h-20", "v20" ] ],
+
+    [ "neo1:GND", "pico:GND.1", "black", [ "h-30", "v30" ] ],
+    [ "neo2:GND", "pico:GND.1", "black", [ "h-30", "v30" ] ],
+    [ "neo3:GND", "pico:GND.1", "black", [ "h-30", "v30" ] ],
+    [ "neo4:GND", "pico:GND.1", "black", [ "h-30", "v30" ] ],
+
+    [ "pico:VBUS", "neo1:VDD", "red", [ "h0" ] ],
+    [ "neo1:VDD", "neo2:VDD", "red", [ "h0", "v19.2", "h48" ] ],
+    [ "neo2:VDD", "neo3:VDD", "red", [ "h0", "v19.2", "h57.6" ] ],
+    [ "neo3:VDD", "neo4:VDD", "red", [ "h0.2", "v16.8", "h57.6" ] ],
+
+    [ "pico:GND.1", "neo1:VSS", "black", [ "h-25.25", "v-128.95" ] ],
+    [ "neo2:VSS", "neo1:VSS", "black", [ "v-18.3", "h-48" ] ],
+    [ "neo2:VSS", "neo3:VSS", "black", [ "v-18.3", "h47.8" ] ],
+    [ "neo3:VSS", "neo4:VSS", "black", [ "v-20.7", "h57.6" ] ],
+
+    [ "pico:GP2", "btn_led1:1.l", "red", [ "h-50", "v50" ] ],
+    [ "btn_led1:2.r", "pico:GND.3", "black", [ "h-80", "v120" ] ],
+
+    [ "pico:GP3", "btn_led2:1.l", "green", [ "h-20", "v50" ] ],
+    [ "btn_led2:2.r", "pico:GND.4", "black", [ "h-50", "v120" ] ],
+
+    [ "pico:GP4", "btn_led3:1.l", "blue", [ "h20", "v50" ] ],
+    [ "btn_led3:2.r", "pico:GND.5", "black", [ "h0", "v120" ] ],
+
+    [ "pico:GP5", "btn_led4:1.l", "orange", [ "h80", "v50" ] ],
+    [ "btn_led4:2.r", "pico:GND.6", "black", [ "h50", "v120" ] ],
+
+    [ "pot:SIG", "pico:GP26", "orange", [ "h-20", "v80" ] ],
+    [ "pot:VCC", "pico:3V3", "red", [ "h-50", "v50" ] ],
+    [ "pot:GND", "pico:GND.7", "black", [ "h-50", "v110" ] ],
+
+    [ "oled:SDA", "pico:GP0", "violet", [ "h-30", "v-40" ] ],
+    [ "oled:SCL", "pico:GP1", "yellow", [ "h-30", "v-30" ] ],
+    [ "oled:VCC", "pico:3V3", "red", [ "h-30", "v-20" ] ],
+    [ "oled:GND", "pico:GND.1", "black", [ "h-374.2", "v272.55" ] ]
+  ],
+  "dependencies": {}
+}
